@@ -1,0 +1,20 @@
+if [[ $# -lt 1 ]]; then
+  echo "provide at least one arg"
+  exit 1
+fi
+
+ORG=${2:-defaultorg}
+upstreamrepo=${3:-$1}
+
+repo="https://github.com/maisiesadler/$1"
+upstream="https://github.com/$ORG/$upstreamrepo"
+
+echo repo = $repo
+echo upstream = $upstream
+
+git clone "$repo"
+
+cd "$1"
+git remote add upstream "$upstream"
+
+echo "Done, create a branch!"
