@@ -15,6 +15,7 @@ echo upstream = $upstream
 git clone "$repo"
 
 cd "$1"
+git remote add origin "$repo"
 git remote add upstream "$upstream"
 
 echo "Done, create a branch!"
