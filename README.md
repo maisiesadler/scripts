@@ -24,15 +24,15 @@ Create new dotnet classlib, sln and tests
 dotnet-create MyProject
 ```
 
-Creates a new solution
-
-- **src**
-  - **MyProject**
-    - **MyProject.csproj**
-- **test**
-  - **MyProject.Test**
-    - **MyProject.Test.csproj**
-- **set-from-the-folder-name.sln**
+```sh
+> * src
+  ┗ * MyProject
+    ┗ * MyProject.csproj
+> * test
+  ┗ * MyProject.Test
+    ┗ * MyProject.Test.csproj
+set-from-the-folder-name.sln
+```
 
 > Will create a new solution, a classlib and an xunit project, then add both to the solution
 
@@ -47,12 +47,12 @@ dotnet-project MyProject.Client
 ```
 
 ```sh
-src
+> src
   ┗ MyProject
     ┗ MyProject.csproj
   ┗ * MyProject.Client
     ┗ * MyProject.Client.csproj
-test
+> test
   ┗ MyProject.Test
     ┗ MyProject.Test.csproj
   ┗ * MyProject.Client.Test
