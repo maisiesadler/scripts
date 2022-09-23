@@ -1,0 +1,35 @@
+#!/bin/bash
+
+PROJECT=$1
+
+if [ "$2" ]; then
+    PROJECT=$PROJECT.$2
+fi
+
+if [ "$3" ]; then
+    PROJECT=$PROJECT.$3
+fi
+
+if [ -z "${PROJECT}" ]; then
+    echo "Please provide arguments containing project name"
+    exit 1
+fi
+
+echo Creating $PROJECT
+
+mkdir src/$PROJECT
+cd src/$PROJECT
+
+dotnet new classlib
+
+cd ../../
+
+mkdir test/$PROJECT.Test
+cd test/$PROJECT.Test
+
+dotnet new xunit
+dotnet add reference ../../src/$PROJECT
+
+cd ../../
+dotnet sln add src/$PROJECT
+dotnet sln add test/$PROJECT.Test

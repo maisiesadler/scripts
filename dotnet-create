@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ "$1" ]; then
+    PROJECT=$1
+fi
+
+if [ -z "${PROJECT}" ]; then
+    echo "Please set PROJECT variable"
+    exit 1
+fi
+
+echo Creating $PROJECT
+
+mkdir src
+mkdir test
+
+cd src
+mkdir $PROJECT
+cd $PROJECT
+dotnet new classlib
+cd ../../
+
+cd test
+mkdir $PROJECT.Test
+cd $PROJECT.Test
+dotnet new xunit
+dotnet add reference ../../src/$PROJECT
+cd ../../
+
+dotnet new sln
+dotnet sln add src/$PROJECT
+dotnet sln add test/$PROJECT.Test
+
+
