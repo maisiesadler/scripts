@@ -25,12 +25,12 @@ dotnet-create MyProject
 ```
 
 ```sh
-> * src
-  ┗ * MyProject
-    ┗ * MyProject.csproj
-> * test
-  ┗ * MyProject.Test
-    ┗ * MyProject.Test.csproj
+> 🆕 src
+  ┗ 🆕 MyProject
+    ┗ 🆕 MyProject.csproj
+> 🆕 test
+  ┗ 🆕 MyProject.Test
+    ┗ 🆕 MyProject.Test.csproj
 set-from-the-folder-name.sln
 ```
 
@@ -50,13 +50,13 @@ dotnet-project MyProject.Client
 > src
   ┗ MyProject
     ┗ MyProject.csproj
-  ┗ * MyProject.Client
-    ┗ * MyProject.Client.csproj
+  ┗ 🆕 MyProject.Client
+    ┗ 🆕 MyProject.Client.csproj
 > test
   ┗ MyProject.Test
     ┗ MyProject.Test.csproj
-  ┗ * MyProject.Client.Test
-    ┗ * MyProject.Client.Test.csproj
+  ┗ 🆕 MyProject.Client.Test
+    ┗ 🆕 MyProject.Client.Test.csproj
 set-from-the-folder-name.sln
 ```
 
