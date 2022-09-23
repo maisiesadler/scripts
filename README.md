@@ -46,16 +46,16 @@ Environment variables cannot contain dots, so to set the project name provide th
 dotnet-project MyProject.Client
 ```
 
-- src
-  - MyProject
-    - MyProject.csproj
-  - **MyProject.Client**
-    - **MyProject.Client.csproj**
-- test
-  - MyProject.Test
-    - MyProject.Test.csproj
-  - **MyProject.Client.Test**
-    - **MyProject.Client.Test.csproj**
-- set-from-the-folder-name.sln
+:open_file_folder: src
+  ┗ :open_file_folder: MyProject
+    ┗ :page_facing_up: MyProject.csproj
+  ┗ :open_file_folder: **MyProject.Client**
+    ┗ :page_facing_up: **MyProject.Client.csproj**
+:open_file_folder: test
+  ┗ :open_file_folder: MyProject.Test
+    ┗ :page_facing_up: MyProject.Test.csproj
+  ┗ :open_file_folder: **MyProject.Client.Test**
+    ┗ :page_facing_up: **MyProject.Client.Test.csproj**
+:page_facing_up: set-from-the-folder-name.sln
 
 > Will create a classlib and an xunit project, then add both to the solution
