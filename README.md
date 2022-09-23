@@ -31,7 +31,7 @@ dotnet-create MyProject
 > 🆕 test
   ┗ 🆕 MyProject.Test
     ┗ 🆕 MyProject.Test.csproj
-set-from-the-folder-name.sln
+🆕 set-from-the-folder-name.sln
 ```
 
 > Will create a new solution, a classlib and an xunit project, then add both to the solution
