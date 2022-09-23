@@ -43,7 +43,7 @@ Add project (and corresponding tests) to an existing sln
 Environment variables cannot contain dots, so to set the project name provide the project name separated by spaces
 
 ```sh
-dotnet-project MyProject.Client
+dotnet-project MyProject Client
 ```
 
 ```sh
