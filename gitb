@@ -1,0 +1,19 @@
+read -r -a array <<< $(git branch)
+
+for index in "${!array[@]}"
+do
+    echo "$index ${array[index]}"
+done
+
+echo Enter branch idx
+
+read -r idx
+
+if [ $idx -gt -1 ] && [ ${#array[@]} -gt $idx ];
+then
+    echo "Switching to branch ${array[idx]}"
+    git checkout ${array[idx]}
+else
+    lastIdx=expr ${#array[@]} - 1
+    echo "Branch must be between 0 and ${lastIdx}";
+fi;
