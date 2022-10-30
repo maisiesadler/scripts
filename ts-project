@@ -22,12 +22,14 @@ npm init -y
 npm pkg set scripts.build="tsc"
 npm pkg set scripts.test="mocha --require ts-node/register test/**.ts test/**/**.ts test/**/**/**.ts"
 
-npm i @types/aws-lambda
-npm i @types/chai
-npm i @types/mocha
-npm i chai
-npm i mocha
-npm i ts-node
+npm i --save-dev @types/aws-lambda
+npm i --save-dev @types/chai
+npm i --save-dev @types/mocha
+npm i --save-dev @types/sinon
+npm i --save-dev chai
+npm i --save-dev mocha
+npm i --save-dev sinon
+npm i --save-dev ts-node
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo $SCRIPT_DIR
@@ -35,7 +37,7 @@ echo $SCRIPT_DIR
 cp -a $SCRIPT_DIR/ts-project-files/. .
 
 cd ../
-echo "cd $PROJECT && npm run test" > test-$PROJECT.sh
-chmod 744 test-$PROJECT.sh
+echo "cd $PROJECT && npm run test" > run-tests-$PROJECT.sh
+chmod 744 run-tests-$PROJECT.sh
 
 
