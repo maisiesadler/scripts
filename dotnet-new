@@ -1,7 +1,10 @@
 #!/bin/bash
 
+### Validation ###
+
 while [[ "$#" -gt 0 ]]; do
     case $1 in
+        -t|--type) project_type="$2"; shift ;;
         -p|--project) project_name="$2"; shift ;;
         -s|--sln) create_sln=true ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
@@ -9,8 +12,25 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
+if [ -z "${project_name}" ]; then
+    echo "Project name required. Please provide --project <>."
+    exit 1
+fi
+
+if [ -z "${project_type}" ]; then
+    echo "Project type required. Please provide --type <>."
+    echo "The type must be is an installed dotnet template, use 'dotnet new' to find valid options."
+    exit 1
+fi
+
+if [ -d "src/$project_name" ]; then
+    echo "Project with name $project_name already exists"
+    exit 1
+fi
+
+### Create solution if required ###
+
 if [ $create_sln ]; then
-    
     if [ ! -z "$(find . -name '*.sln' -maxdepth 1)" ]; then
         echo "Solution already exits, remove --sln/-s flag."
         exit 1
@@ -36,22 +56,14 @@ if [ -z "$(find . -name '*.sln' -maxdepth 1)" ]; then
     exit 1
 fi
 
-if [ -z "${project_name}" ]; then
-    echo "Project name required. Please provide --project <>."
-    exit 1
-fi
-
-if [ -d "src/$project_name" ]; then
-    echo "Project with name $project_name already exists"
-    exit 1
-fi
+### Create and add project ###
 
 echo Creating $project_name
 
 mkdir src/$project_name
 cd src/$project_name
 
-dotnet new classlib
+dotnet new $project_type
 
 cd ../../
 
