@@ -9,6 +9,11 @@ if [ -z "${PROJECT}" ]; then
     exit 1
 fi
 
+if [ -d "src/$PROJECT" ]; then
+    echo "Project with name $PROJECT already exists"
+    exit 1
+fi
+
 echo Creating $PROJECT
 
 mkdir src

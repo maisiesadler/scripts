@@ -1,0 +1,69 @@
+#!/bin/bash
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -p|--project) project_name="$2"; shift ;;
+        -s|--sln) create_sln=true ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+if [ $create_sln ]; then
+    
+    if [ ! -z "$(find . -name '*.sln' -maxdepth 1)" ]; then
+        echo "Solution already exits, remove --sln/-s flag."
+        exit 1
+    fi
+
+    echo "creating sln"
+    dotnet new sln
+   
+    mkdir src
+    mkdir test
+ 
+    SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+    cp -a $SCRIPT_DIR/dotnet-files/. .
+
+    git init
+    git add .
+    git commit -m "Initial commit"
+fi
+
+if [ -z "$(find . -name '*.sln' -maxdepth 1)" ]; then
+    echo "No solution file. Use --sln to create one."
+    exit 1
+fi
+
+if [ -z "${project_name}" ]; then
+    echo "Project name required. Please provide --project <>."
+    exit 1
+fi
+
+if [ -d "src/$project_name" ]; then
+    echo "Project with name $project_name already exists"
+    exit 1
+fi
+
+echo Creating $project_name
+
+mkdir src/$project_name
+cd src/$project_name
+
+dotnet new classlib
+
+cd ../../
+
+mkdir test/$project_name.Test
+cd test/$project_name.Test
+
+dotnet new xunit
+dotnet add reference ../../src/$project_name
+
+cd ../../
+dotnet sln add src/$project_name
+dotnet sln add test/$project_name.Test
+
+git add .
+git commit -m "Added project $project_name"

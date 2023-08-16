@@ -2,16 +2,13 @@
 
 PROJECT=$1
 
-if [ "$2" ]; then
-    PROJECT=$PROJECT.$2
-fi
-
-if [ "$3" ]; then
-    PROJECT=$PROJECT.$3
-fi
-
 if [ -z "${PROJECT}" ]; then
     echo "Please provide arguments containing project name"
+    exit 1
+fi
+
+if [ -d "src/$PROJECT" ]; then
+    echo "Project with name $PROJECT already exists"
     exit 1
 fi
 
